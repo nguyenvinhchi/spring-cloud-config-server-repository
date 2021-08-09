@@ -36,3 +36,20 @@ spring:
         jwt:
           issuer-uri: http://localhost:9091/auth/realms/sbmicroservices
           jwk-set-uri: http://localhost:9091/auth/realms/sbmicroservices/protocol/openid-connect/certs
+
+  jpa:
+    open-in-view: false
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+  datasource:
+    url: jdbc:postgresql://localhost:5432/demo_elastic_query_db?currentSchema=demomaster&binaryTransfer=true&reWriteBatchedInserts=true
+    username: demouser
+    password: '{cipher}2e96376cd9029595e182494b6b33d59ea2b38576ea9714c252c32de2ca586a6f'
+    driver-class-name: org.postgresql.Driver
+    platform: postgres
+    schema: classpath:init-schema.sql
+    data: classpath:init-data.sql
+    initialization-mode: always
