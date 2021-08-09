@@ -1,5 +1,6 @@
 elastic-query-service:
   version: v1
+  custom-audience: elastic-query-service
 
 server:
   port: 8183
@@ -20,7 +21,7 @@ user-config:
   password: '{cipher}0272e53a006e2ef907f51f7608135d6f987c1a96abf8d75006048cf34495aa51'
   roles: USER
 
-spring-doc:
+springdoc:
   api-docs:
     path: /api-docs
   swagger-ui:
@@ -28,3 +29,10 @@ spring-doc:
 
 #security:
 #  paths-to-ignore: /api-docs
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9091/auth/realms/microservices-realm
+          jwk-set-uri: http://localhost:9091/auth/realms/microservices-realm/protocol/openid-connect/certs
