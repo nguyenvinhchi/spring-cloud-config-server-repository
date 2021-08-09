@@ -27,8 +27,8 @@ springdoc:
   swagger-ui:
     path: /swagger-ui.html
 
-#security:
-#  paths-to-ignore: /api-docs
+security:
+  paths-to-ignore: /api-docs
 spring:
   security:
     oauth2:
