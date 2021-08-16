@@ -56,7 +56,7 @@ spring:
             authorizationGrantType: client_credentials
         provider:
           keycloak:
-            tokenUrl: http://localhost:9091/auth/realms/sbmicroservices/protocol/openid-connect/token
+            tokenUri: http://localhost:9091/auth/realms/sbmicroservices/protocol/openid-connect/token
   jpa:
     open-in-view: false
     show-sql: true
