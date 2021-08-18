@@ -26,6 +26,8 @@ spring:
         jdbc.batch_size: 50
         order_inserts: true
         order_updates: true
+    hibernate:
+      ddl-auto: create-drop
   datasource:
     url: jdbc:postgresql://localhost:5432/demo_elastic_query_db?currentSchema=analytics&binaryTransfer=true&reWriteBatchedInserts=true
     username: demouser
