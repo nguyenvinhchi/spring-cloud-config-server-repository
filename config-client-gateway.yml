@@ -70,6 +70,22 @@ spring:
               args:
                 name: streamsServiceCircuitBreaker
                 fallbackUri: forward:/fallback/streams-fallback
+
+        - id: elastic-query-web-client
+          uri: lb://elastic-query-web-client
+          predicates:
+            - Path=/elastic-query-web-client/**
+          filters:
+            - RewritePath=/elastic-query-web-client/(?<path>.*), /$\{path}
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
+                key-resolver: "#{@authHeaderResolver}"
+            - name: CircuitBreaker
+              args:
+                name: elasticQueryWebClientServiceCircuitBreaker
+                fallbackUri: forward:/fallback/elastic-query-web-client-fallback
   redis:
     host: 127.0.0.1
     port: 6379
