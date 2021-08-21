@@ -13,11 +13,11 @@ elastic-query-service:
 #    query-type: 'KAFKA_STATE_STORE'
   query-from-kafka-state-store:
     method: GET
-    uri: "http://${elastic-query-service.gateway-service-host}/kafka-streams-service/get-word-count-by-word/{word}"
+    uri: "http://kafka-streams-service/get-word-count-by-word/{word}"
     accept: ${elastic-query-service.webclient.accept-type}
   query-from-analytics-database:
     method: GET
-    uri: "http://${elastic-query-service.gateway-service-host}/analytics-service/get-word-count-by-word/{word}"
+    uri: "http://analytics-service/get-word-count-by-word/{word}"
     accept: ${elastic-query-service.webclient.accept-type}
 
 server:
