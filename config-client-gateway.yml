@@ -30,7 +30,7 @@ spring:
           predicates:
             - Path=/elastic-query-service/**
           filters:
-            - RewritePath=/elastic-query-service(?<segment>/?.*), /elastic-query-service/$\{segment}
+            - RewritePath=/elastic-query-service/(?<path>.*), /$\{path}
             - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 5
@@ -45,7 +45,7 @@ spring:
           predicates:
             - Path=/analytics-service/**
           filters:
-            - RewritePath=/analytics-service(?<segment>/?.*), /analytics-service/$\{segment}
+            - RewritePath=/analytics-service/(?<path>.*), /$\{path}
             - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 5
@@ -60,7 +60,7 @@ spring:
           predicates:
             - Path=/kafka-streams-service/**
           filters:
-            - RewritePath=/kafka-streams-service(?<segment>/?.*), /kafka-streams-service/$\{segment}
+            - RewritePath=/kafka-streams-service/(?<path>.*), /$\{path}
             - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 5

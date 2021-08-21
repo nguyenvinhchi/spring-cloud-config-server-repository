@@ -1,6 +1,7 @@
 elastic-query-service:
   version: v1
   custom-audience: elastic-query-service
+  gateway-service-host: localhost:9090
   webclient:
     connect-timeout-ms: 10000
     read-timeout-ms: 10000
@@ -12,17 +13,17 @@ elastic-query-service:
 #    query-type: 'KAFKA_STATE_STORE'
   query-from-kafka-state-store:
     method: GET
-    uri: "http://localhost:8187/kafka-streams-service/get-word-count-by-word/{word}"
+    uri: "http://${elastic-query-service.gateway-service-host}/kafka-streams-service/get-word-count-by-word/{word}"
     accept: ${elastic-query-service.webclient.accept-type}
   query-from-analytics-database:
     method: GET
-    uri: "http://localhost:8188/analytics-service/get-word-count-by-word/{word}"
+    uri: "http://${elastic-query-service.gateway-service-host}/analytics-service/get-word-count-by-word/{word}"
     accept: ${elastic-query-service.webclient.accept-type}
 
 server:
   port: 8183
   servlet:
-    context-path: /elastic-query-service
+    context-path: /
 
 elastic-query-config:
   text-field: text
