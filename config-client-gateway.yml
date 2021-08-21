@@ -31,61 +31,46 @@ spring:
             - Path=/elastic-query-service/**
           filters:
             - RewritePath=/elastic-query-service(?<segment>/?.*), /elastic-query-service/$\{segment}
-#            - name: RequestRateLimiter
-#              args:
-#                redis-rate-limiter.replenishRate: 5
-#                redis-rate-limiter.burstCapacity: 10
-#                key-resolver: "#{@authHeaderResolver}"
-#            - name: CircuitBreaker
-#              args:
-#                name: queryServiceCircuitBreaker
-#                fallbackUri: forward:/fallback/query-fallback
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
+                key-resolver: "#{@authHeaderResolver}"
+            - name: CircuitBreaker
+              args:
+                name: queryServiceCircuitBreaker
+                fallbackUri: forward:/fallback/query-fallback
         - id: analytics-service
           uri: lb://analytics-service
           predicates:
             - Path=/analytics-service/**
           filters:
             - RewritePath=/analytics-service(?<segment>/?.*), /analytics-service/$\{segment}
-#            - name: RequestRateLimiter
-#              args:
-#                redis-rate-limiter.replenishRate: 5
-#                redis-rate-limiter.burstCapacity: 10
-#                key-resolver: "#{@authHeaderResolver}"
-#            - name: CircuitBreaker
-#              args:
-#                name: analyticsServiceCircuitBreaker
-#                fallbackUri: forward:/fallback/analytics-fallback
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
+                key-resolver: "#{@authHeaderResolver}"
+            - name: CircuitBreaker
+              args:
+                name: analyticsServiceCircuitBreaker
+                fallbackUri: forward:/fallback/analytics-fallback
         - id: kafka-streams-service
           uri: lb://kafka-streams-service
           predicates:
             - Path=/kafka-streams-service/**
           filters:
             - RewritePath=/kafka-streams-service(?<segment>/?.*), /kafka-streams-service/$\{segment}
-#            - name: RequestRateLimiter
-#              args:
-#                redis-rate-limiter.replenishRate: 5
-#                redis-rate-limiter.burstCapacity: 10
-#                key-resolver: "#{@authHeaderResolver}"
-#            - name: CircuitBreaker
-#              args:
-#                name: streamsServiceCircuitBreaker
-#                fallbackUri: forward:/fallback/streams-fallback
-
-        - id: elastic-query-web-client
-          uri: lb://elastic-query-web-client
-          predicates:
-            - Path=/elastic-query-web-client/**
-          filters:
-            - RewritePath=/elastic-query-web-client(?<segment>/?.*), /elastic-query-web-client/$\{segment}
             - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 5
                 redis-rate-limiter.burstCapacity: 10
-#                key-resolver: "#{@authHeaderResolver}"
-#            - name: CircuitBreaker
-#              args:
-#                name: elasticQueryWebClientServiceCircuitBreaker
-#                fallbackUri: forward:/fallback/elastic-query-web-client-fallback
+                key-resolver: "#{@authHeaderResolver}"
+            - name: CircuitBreaker
+              args:
+                name: streamsServiceCircuitBreaker
+                fallbackUri: forward:/fallback/streams-fallback
+
   redis:
     host: 127.0.0.1
     port: 6379
