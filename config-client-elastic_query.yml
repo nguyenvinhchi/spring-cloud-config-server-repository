@@ -78,3 +78,15 @@ spring:
     schema: classpath:init-schema.sql
     data: classpath:init-data.sql
     initialization-mode: always
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure.include: health, prometheus
+      path-mapping.prometheus: metrics
+  endpoint:
+    health:
+      show-details: always
+    prometheus:
+      cache.time-to-live: 1ms
