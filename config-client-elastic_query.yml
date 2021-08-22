@@ -40,7 +40,7 @@ springdoc:
     path: /swagger-ui.html
 
 security:
-  paths-to-ignore: /api-docs, /actuator/**, /mappings
+  paths-to-ignore: /api-docs, /actuator/**
 spring:
   security:
     oauth2:

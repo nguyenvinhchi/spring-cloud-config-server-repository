@@ -42,7 +42,7 @@ springdoc:
     path: /swagger-ui.html
 
 security:
-  paths-to-ignore: /api-docs, /actuator
+  paths-to-ignore: /api-docs, /actuator/**
 
 kafka-config:
   bootstrap-servers: localhost:9092

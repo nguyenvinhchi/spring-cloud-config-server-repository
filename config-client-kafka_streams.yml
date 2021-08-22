@@ -21,7 +21,7 @@ springdoc:
     path: /swagger-ui.html
 
 security:
-  paths-to-ignore: /api-docs, /actuator
+  paths-to-ignore: /api-docs, /actuator/**
 
 retry-config:
   initial-interval-ms: 1000
